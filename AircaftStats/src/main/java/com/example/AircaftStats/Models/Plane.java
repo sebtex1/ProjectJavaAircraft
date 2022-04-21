@@ -12,15 +12,16 @@ public class Plane {
 
     @Id
     @Column(name = "id_plane")
-    final String icao24;
+    private String icao24;
     @Column(name = "plane_name")
-    final String callSign;
-    final Float longitude;
-    final Float latitude;
+    private String callSign;
+    private Float longitude;
+    private Float latitude;
     @Column(name = "on_ground")
-    final boolean onGround;
+    private boolean onGround;
     @Column(name = "true_track")
-    final Float trueTrack;
+    private Float trueTrack;
+
 
     public Plane(String icao24, String callSign, Float longitude, Float latitude, boolean onGround, Float trueTrack) {
         this.icao24 = icao24;
@@ -30,6 +31,8 @@ public class Plane {
         this.onGround = onGround;
         this.trueTrack = trueTrack;
     }
+
+    public Plane() {}
 
     @Override
     public String toString() {
