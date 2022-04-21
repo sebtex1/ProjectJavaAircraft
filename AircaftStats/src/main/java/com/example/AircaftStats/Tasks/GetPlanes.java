@@ -3,6 +3,7 @@ package com.example.AircaftStats.Tasks;
 import com.example.AircaftStats.Models.Flight;
 import com.example.AircaftStats.Models.History;
 import com.example.AircaftStats.Models.Plane;
+import com.example.AircaftStats.Services.FlightService;
 import com.example.AircaftStats.Services.PlaneService;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,6 +25,8 @@ public class GetPlanes {
 
     @Autowired
     PlaneService planeService;
+    @Autowired
+    FlightService flightService;
     private static HttpURLConnection connection;
 
     @Scheduled(fixedDelay = 10000)
@@ -96,6 +99,7 @@ public class GetPlanes {
             System.out.println(historyObject);
 
             // planeService.insertPlane(planeObject);
+            // flightService.insertFlight(flightObject);
         }
         return null;
     }
