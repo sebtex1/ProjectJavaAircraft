@@ -1,7 +1,11 @@
 <template>
   <div>
-    <br>
     <h1>Aircraft Stats</h1>
+    <label for="time">Time: </label>
+    <select style="margin-bottom: 20px;" id="time" name="time">
+      <option value="now">now</option>
+      <option value="1650540944">{{ new Date(1650540944000) }}</option>
+    </select>
  
     <gmap-map
       :center="center"
@@ -50,9 +54,12 @@ export default {
     },
     getFlights() {
       axios.get("http://localhost:9090/flights").then((response) => {
-        
+        let i = 0;
         response.data.forEach(element => {
-          this.markers.push({ lat: element.latitude, lng: element.longitude, rotation: element.trueTrack.toFixed(0) })
+          if (i < 1000) {
+            this.markers.push({ lat: element.latitude, lng: element.longitude, rotation: element.trueTrack.toFixed(0) })
+            i += 1
+          }
         });
         console.log(this.markers)
       }).catch((error) => {
