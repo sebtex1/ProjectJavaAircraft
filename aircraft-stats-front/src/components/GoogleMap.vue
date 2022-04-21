@@ -6,7 +6,7 @@
     <gmap-map
       :center="center"
       :zoom="5"
-      style="width:100%;  height: 48rem;"
+      style="width:100%;  height: 50rem;"
     >
       <gmap-marker
         :key="index"
