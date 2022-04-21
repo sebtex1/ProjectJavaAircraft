@@ -17,4 +17,7 @@ public class PlaneService {
     public void insertPlane(Plane plane) {
         planeRepository.save(plane);
     }
+    public void insertALLPlanes(Iterable<Plane> allPlanes) {
+        planeRepository.saveAll(allPlanes);
+    }
 }

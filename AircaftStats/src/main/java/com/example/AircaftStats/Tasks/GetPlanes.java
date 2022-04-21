@@ -1,5 +1,7 @@
 package com.example.AircaftStats.Tasks;
 
+import com.example.AircaftStats.Models.Flight;
+import com.example.AircaftStats.Models.History;
 import com.example.AircaftStats.Models.Plane;
 import com.example.AircaftStats.Services.PlaneService;
 import org.json.JSONArray;
@@ -74,8 +76,9 @@ public class GetPlanes {
 
     public String parse(String responseBody) {
         JSONObject data = new JSONObject(responseBody);
+        long time = data.getLong("time");
         JSONArray planes = new JSONArray(data.getJSONArray("states"));
-        for (int i = 0; i < planes.length(); i++) {
+        for (int i = 0; i < 100; i++) {
             JSONArray plane = planes.getJSONArray(i);
             String icao24 = plane.getString(0);
             String callSign = plane.getString(1);
@@ -85,10 +88,14 @@ public class GetPlanes {
             boolean onGround = plane.getBoolean(8);
             Float trueTrack = getFloat(plane, 10, null); // Sens de l'avion (nord = 0° sud = 180°)
 
-            Plane planeObject = new Plane(icao24, callSign, longitude, latitude, onGround, trueTrack);
-
+            Plane planeObject = new Plane(icao24, callSign);
             System.out.println(planeObject);
-            planeService.insertPlane(planeObject);
+            Flight flightObject = new Flight(icao24, longitude, latitude, onGround, trueTrack);
+            System.out.println(flightObject);
+            History historyObject = new History(icao24, longitude, latitude, time);
+            System.out.println(historyObject);
+
+            // planeService.insertPlane(planeObject);
         }
         return null;
     }
