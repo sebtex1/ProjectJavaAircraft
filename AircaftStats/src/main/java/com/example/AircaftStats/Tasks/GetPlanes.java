@@ -112,15 +112,15 @@ public class GetPlanes {
         LocalDateTime nowStart = LocalDateTime.now();
         System.out.println("Starting save " + dtf.format(nowStart));
         Iterable<Plane> allPlanes = planeList;
-        // planeService.insertALLPlanes(allPlanes);
+        planeService.insertALLPlanes(allPlanes);
         LocalDateTime nowPlane = LocalDateTime.now();
         System.out.println("done save all planes" + dtf.format(nowPlane));
         Iterable<Flight> allFlights = flightList;
-        // flightService.insertAllFlight(allFlights);
+        flightService.insertAllFlight(allFlights);
         LocalDateTime nowFlight = LocalDateTime.now();
         System.out.println("done save all flights" + dtf.format(nowFlight));
         Iterable<History> allHistory = historyList;
-        // historyService.insertAllHistory(allHistory);
+        historyService.insertAllHistory(allHistory);
         LocalDateTime nowHistory = LocalDateTime.now();
         System.out.println("done save all the history" + dtf.format(nowHistory));
         LocalDateTime nowEnd = LocalDateTime.now();

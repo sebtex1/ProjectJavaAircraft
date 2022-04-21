@@ -9,8 +9,8 @@ public class History {
 
     @Id
     @GeneratedValue
-    @Column(name = "id_history")
-    private String idHistory;
+    @Column(name = "id_history", columnDefinition = "uniqueidentifier")
+    private UUID idHistory;
     @Column(name = "id_flight")
     private String icao24;
     private Float longitude;
