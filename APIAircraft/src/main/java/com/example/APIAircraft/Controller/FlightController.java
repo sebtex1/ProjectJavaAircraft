@@ -1,9 +1,6 @@
 package com.example.APIAircraft.Controller;
 
-import com.example.APIAircraft.Models.Flight;
 import com.example.APIAircraft.Services.FlightService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class FlightController {
     }
 
     @RequestMapping(path = "/flights/{id}")
-    public String getFlightById(@PathVariable("id") String id) throws JsonProcessingException {
+    public String getFlightById(@PathVariable("id") String id) {
         JSONObject flight = new JSONObject(flightService.getFlightById(id));
         return flight.toString();
     }
