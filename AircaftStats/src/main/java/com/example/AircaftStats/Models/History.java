@@ -10,7 +10,7 @@ public class History {
     @Id
     @GeneratedValue
     @Column(name = "id_history")
-    private UUID idHistory;
+    private String idHistory;
     @Column(name = "id_flight")
     private String icao24;
     private Float longitude;

@@ -4,6 +4,7 @@ import com.example.AircaftStats.Models.Flight;
 import com.example.AircaftStats.Models.History;
 import com.example.AircaftStats.Models.Plane;
 import com.example.AircaftStats.Services.FlightService;
+import com.example.AircaftStats.Services.HistoryService;
 import com.example.AircaftStats.Services.PlaneService;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +20,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.Buffer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class GetPlanes {
@@ -27,6 +32,8 @@ public class GetPlanes {
     PlaneService planeService;
     @Autowired
     FlightService flightService;
+    @Autowired
+    HistoryService historyService;
     private static HttpURLConnection connection;
 
     @Scheduled(fixedDelay = 10000)
@@ -38,8 +45,8 @@ public class GetPlanes {
             URL url = new URL("https://YnovSebTex:18051998St&@opensky-network.org/api/states/all");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
 
             int status = connection.getResponseCode();
             if (status > 299) {
@@ -78,10 +85,13 @@ public class GetPlanes {
     }
 
     public String parse(String responseBody) {
+        List<Plane> planeList = new ArrayList<>();
+        List<Flight> flightList = new ArrayList<>();
+        List<History> historyList = new ArrayList<>();
         JSONObject data = new JSONObject(responseBody);
         long time = data.getLong("time");
         JSONArray planes = new JSONArray(data.getJSONArray("states"));
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < planes.length(); i++) {
             JSONArray plane = planes.getJSONArray(i);
             String icao24 = plane.getString(0);
             String callSign = plane.getString(1);
@@ -92,15 +102,32 @@ public class GetPlanes {
             Float trueTrack = getFloat(plane, 10, null); // Sens de l'avion (nord = 0° sud = 180°)
 
             Plane planeObject = new Plane(icao24, callSign);
-            System.out.println(planeObject);
+            planeList.add(planeObject);
             Flight flightObject = new Flight(icao24, longitude, latitude, onGround, trueTrack);
-            System.out.println(flightObject);
+            flightList.add(flightObject);
             History historyObject = new History(icao24, longitude, latitude, time);
-            System.out.println(historyObject);
-
-            // planeService.insertPlane(planeObject);
-            // flightService.insertFlight(flightObject);
+            historyList.add(historyObject);
         }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime nowStart = LocalDateTime.now();
+        System.out.println("Starting save " + dtf.format(nowStart));
+        Iterable<Plane> allPlanes = planeList;
+        // planeService.insertALLPlanes(allPlanes);
+        LocalDateTime nowPlane = LocalDateTime.now();
+        System.out.println("done save all planes" + dtf.format(nowPlane));
+        Iterable<Flight> allFlights = flightList;
+        // flightService.insertAllFlight(allFlights);
+        LocalDateTime nowFlight = LocalDateTime.now();
+        System.out.println("done save all flights" + dtf.format(nowFlight));
+        Iterable<History> allHistory = historyList;
+        // historyService.insertAllHistory(allHistory);
+        LocalDateTime nowHistory = LocalDateTime.now();
+        System.out.println("done save all the history" + dtf.format(nowHistory));
+        LocalDateTime nowEnd = LocalDateTime.now();
+        System.out.println("Starting save " + dtf.format(nowEnd));
+        System.out.println("Time spend = " + (nowEnd.getMinute() - nowStart.getMinute()) + "minutes " +
+                (nowEnd.getSecond() - nowStart.getSecond()) + "seconds "
+                + (nowEnd.getNano() - nowStart.getNano()) + "nano");
         return null;
     }
 
