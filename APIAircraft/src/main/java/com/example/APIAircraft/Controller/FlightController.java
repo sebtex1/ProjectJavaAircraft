@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class FlightController {
 
     @Autowired
@@ -18,7 +19,6 @@ public class FlightController {
     @Autowired
     public FlightController(FlightService flightService) { this.flightService = flightService; }
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(path = "/flights")
     public String getAllFlights() {
         JSONArray allFlights = new JSONArray(flightService.getAllFlights());

@@ -25,7 +25,6 @@
 import Aircraft from "../assets/Aircraft.png"
 import axios from "axios"
 import GmapCustomMark from "vue2-gmap-custom-marker"
-// import GmapCluster  from "gmap-vue/dist/components/cluster"
 
 export default {
   name: "GoogleMap",

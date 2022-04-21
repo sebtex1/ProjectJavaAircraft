@@ -74,14 +74,6 @@ public class GetPlanes {
         } finally {
             connection.disconnect();
         }
-
-        // Methode depuis Java 11 (java.net.http.HttpClient)
-        /* HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://YnovSebTex:18051998St&@opensky-network.org/api/states/all")).build();
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenAccept(GetPlanes::parse)
-                .join(); */
     }
 
     public String parse(String responseBody) {
