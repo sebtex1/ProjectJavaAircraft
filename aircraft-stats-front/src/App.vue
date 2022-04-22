@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <google-map />
+    <p>
+      <router-link class="link" to="/">Home</router-link>
+      <router-link class="link" to="/history">History</router-link>      
+    </p>
+    <h1>Aircraft Stats</h1>
+    <router-view></router-view>
   </div>
 </template>
  
 <script>
-import GoogleMap from "./components/GoogleMap";
  
 export default {
-  name: 'App',
-  components: {
-    GoogleMap
-  }
+  name: 'App'
 }
 </script>
  
@@ -22,5 +23,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.link {
+  margin-left: 10px
 }
 </style>

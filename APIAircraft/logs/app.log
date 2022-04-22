@@ -21,3 +21,29 @@
 2022-04-21 18:39:30.791  INFO 26216 --- [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-04-21 18:39:30.792  INFO 26216 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-04-21 18:39:30.792  INFO 26216 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2022-04-22 09:23:19.619  INFO 14368 --- [main] c.e.APIAircraft.ApiAircraftApplication   : Starting ApiAircraftApplication using Java 17.0.2 on DESKTOP-U14U39T with PID 14368 (C:\Workspace\project\ProjectJavaAircraft\APIAircraft\target\classes started by Sebas in C:\Workspace\project\ProjectJavaAircraft\APIAircraft)
+2022-04-22 09:23:19.639  INFO 14368 --- [main] c.e.APIAircraft.ApiAircraftApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-04-22 09:23:20.583  INFO 14368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-22 09:23:20.668  INFO 14368 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 3 JPA repository interfaces.
+2022-04-22 09:23:21.403  INFO 14368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2022-04-22 09:23:21.416  INFO 14368 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-22 09:23:21.416  INFO 14368 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-04-22 09:23:21.525  INFO 14368 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-22 09:23:21.526  INFO 14368 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1715 ms
+2022-04-22 09:23:21.884  INFO 14368 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-22 09:23:21.931  INFO 14368 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-04-22 09:23:22.156  INFO 14368 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-22 09:23:22.254  INFO 14368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-22 09:23:22.973  INFO 14368 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-22 09:23:22.988  INFO 14368 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2022-04-22 09:23:23.975  INFO 14368 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-22 09:23:23.986  INFO 14368 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-22 09:23:24.373  WARN 14368 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-22 09:23:24.822  INFO 14368 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2022-04-22 09:23:24.831  INFO 14368 --- [main] c.e.APIAircraft.ApiAircraftApplication   : Started ApiAircraftApplication in 5.83 seconds (JVM running for 6.446)
+2022-04-22 09:24:57.551  INFO 14368 --- [http-nio-9090-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-22 09:24:57.552  INFO 14368 --- [http-nio-9090-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-22 09:24:57.554  INFO 14368 --- [http-nio-9090-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-04-22 12:16:10.617  INFO 14368 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-22 12:16:10.725  INFO 14368 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-22 12:16:10.752  INFO 14368 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
