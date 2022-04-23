@@ -1,5 +1,6 @@
 <template>
   <div> 
+    <!-- Personnal custom map by adding mapId -->
     <gmap-map
       :center="center"
       :zoom="10"

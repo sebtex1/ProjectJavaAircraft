@@ -10,7 +10,7 @@
 
 <script>
 // import axios from "axios"
-
+const { lookUp } = require("geojson-places");
 
 export default {
     data() {
@@ -25,6 +25,9 @@ export default {
 
     methods: {
     getFlights() {
+      const result = lookUp(-32, 20);
+
+      console.log(result);
       // axios.get("http://localhost:9090/flights").then((response) => {
       //   // let i = 0;
       //   response.data.forEach(element => {

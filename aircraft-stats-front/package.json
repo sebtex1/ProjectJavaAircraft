@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
-    "country-reverse-geocoding": "^0.2.2",
+    "geojson-places": "^1.0.3",
     "marker-clusterer-plus": "^2.1.4",
     "vue": "^2.6.14",
     "vue-router": "^3.2.0",
