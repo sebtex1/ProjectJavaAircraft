@@ -1,46 +1,47 @@
 <template>
     <div>
         <label for="time">Time: </label>
-        <select style="margin-bottom: 20px;" id="time" name="time">
-        <option value="now">now</option>
-        <option value="1650540944">{{ new Date(1650540944000) }}</option>
+        <select style="margin-bottom: 20px;" id="time" name="time" v-model="time" @change="getFlights(time)">
+          <option :key="t" v-for="t in times" :value="t">{{ new Date(parseInt(t.toString() + '000')) }}</option>
         </select>
+        <h1>Total aircraft in the sky at {{  new Date(parseInt(time.toString() + '000')) }}: {{ this.flights.length }}</h1>
     </div>
 </template>
 
 <script>
-// import axios from "axios"
-const { lookUp } = require("geojson-places");
+import axios from "axios"
 
 export default {
     data() {
         return {
-            markers: []
+          time: '',
+          times: [],
+          flights: []
         };
   },
 
-    mounted() {
-        this.getFlights()
+    async mounted() {
+      await axios.get('http://localhost:9090/history/time').then((response) => {
+        response.data.forEach((time) => {
+          this.times.push(time);
+        })
+        console.log(this.times)
+      }).catch((error) => {
+        console.log(error)
+      })
+      this.time = this.times[0]
+      this.getFlights(this.times[0])
     },
 
     methods: {
-    getFlights() {
-      const result = lookUp(-32, 20);
-
-      console.log(result);
-      // axios.get("http://localhost:9090/flights").then((response) => {
-      //   // let i = 0;
-      //   response.data.forEach(element => {
-      //   //   if (i < 1000) {            
-      //       this.markers.push({ lat: element.latitude, lng: element.longitude })
-      //       // i += 1
-      //   //   }
-      //   });
-      //   console.log(this.markers)
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
-    }
+      getFlights(time) {
+        axios.get(`http://localhost:9090/history/time/${time}`).then((response) => {
+          this.flights = response.data
+          console.log(this.flights)
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
   }
 }
 </script>

@@ -24,9 +24,21 @@ public class HistoryController {
         return allHistory.toString();
     }
 
-    @RequestMapping(path = "/history/id")
+    @RequestMapping(path = "/history/{id}")
     public String getHistoryById(@RequestParam("id") UUID id) {
         JSONObject history = new JSONObject(historyService.getHistoryById(id));
+        return history.toString();
+    }
+
+    @RequestMapping(path = "/history/time/{time}")
+    public String getHistoryById(@PathVariable("time") long time) {
+        JSONArray history = new JSONArray(historyService.getAllHistoryByTime(time));
+        return history.toString();
+    }
+
+    @RequestMapping(path = "/history/time")
+    public String getHistoryTime() {
+        JSONArray history = new JSONArray(historyService.getTimes());
         return history.toString();
     }
 }

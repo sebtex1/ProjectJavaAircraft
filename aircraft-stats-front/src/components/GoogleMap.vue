@@ -52,12 +52,12 @@ export default {
   methods: {
     getFlights() {
       axios.get("http://localhost:9090/flights").then((response) => {
-        let i = 0;
+        // let i = 0;
         response.data.forEach(element => {
-          if (i < 1000) {
+          // if (i < 1000) {
             this.markers.push({ lat: element.latitude, lng: element.longitude, rotation: element.trueTrack.toFixed(0) })
-            i += 1
-          }
+          //   i += 1
+          // }
         });
         console.log(this.markers)
       }).catch((error) => {

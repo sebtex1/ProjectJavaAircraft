@@ -34,8 +34,8 @@ public class GetPlanes {
     HistoryService historyService;
     private static HttpURLConnection connection;
 
-    // starts getPlanes 1sec after finish
-    @Scheduled(fixedDelay = 1000)
+    // starts getPlanes 10sec after finish
+    @Scheduled(fixedDelay = 10000)
     public void getPlanes() {
         BufferedReader reader;
         String line;
@@ -102,7 +102,7 @@ public class GetPlanes {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime nowStart = LocalDateTime.now();
         System.out.println("Starting save " + dtf.format(nowStart));
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        //ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         // Process Plane
         Iterable<Plane> allPlanes = planeList;
