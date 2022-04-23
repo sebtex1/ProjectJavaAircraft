@@ -20,6 +20,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class GetPlanes {
@@ -32,7 +34,8 @@ public class GetPlanes {
     HistoryService historyService;
     private static HttpURLConnection connection;
 
-    @Scheduled(fixedDelay = 10000)
+    // starts getPlanes 1sec after finish
+    @Scheduled(fixedDelay = 1000)
     public void getPlanes() {
         BufferedReader reader;
         String line;
@@ -41,8 +44,8 @@ public class GetPlanes {
             URL url = new URL("https://YnovSebTex:18051998St&@opensky-network.org/api/states/all");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(10000);
-            connection.setReadTimeout(10000);
+            connection.setConnectTimeout(60000);
+            connection.setReadTimeout(60000);
 
             int status = connection.getResponseCode();
             if (status > 299) {
@@ -99,18 +102,26 @@ public class GetPlanes {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime nowStart = LocalDateTime.now();
         System.out.println("Starting save " + dtf.format(nowStart));
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        // Process Plane
         Iterable<Plane> allPlanes = planeList;
         planeService.insertALLPlanes(allPlanes);
         LocalDateTime nowPlane = LocalDateTime.now();
         System.out.println("done save all planes" + dtf.format(nowPlane));
+
+        // Process Flight
         Iterable<Flight> allFlights = flightList;
         flightService.insertAllFlight(allFlights);
         LocalDateTime nowFlight = LocalDateTime.now();
         System.out.println("done save all flights" + dtf.format(nowFlight));
+
+        // Process History
         Iterable<History> allHistory = historyList;
         historyService.insertAllHistory(allHistory);
         LocalDateTime nowHistory = LocalDateTime.now();
         System.out.println("done save all the history" + dtf.format(nowHistory));
+
         LocalDateTime nowEnd = LocalDateTime.now();
         System.out.println("Starting save " + dtf.format(nowEnd));
         System.out.println("Time spend = " + (nowEnd.getMinute() - nowStart.getMinute()) + "minutes " +

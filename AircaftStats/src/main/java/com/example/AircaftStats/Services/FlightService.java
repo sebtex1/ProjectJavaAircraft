@@ -15,5 +15,8 @@ public class FlightService {
     public FlightService(FlightRepository flightRepository) { this.flightRepository = flightRepository; }
 
     public void insertFlight(Flight flight) { flightRepository.save(flight); }
-    public void insertAllFlight(Iterable<Flight> allFlights) { flightRepository.saveAll(allFlights); }
+    public void insertAllFlight(Iterable<Flight> allFlights) {
+        flightRepository.deleteAll();
+        flightRepository.saveAll(allFlights);
+    }
 }

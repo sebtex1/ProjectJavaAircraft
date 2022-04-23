@@ -4,6 +4,14 @@
       :center="center"
       :zoom="10"
       style="width:100%;  height: 50rem;"
+      :options="{
+        mapTypeControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        scaleControl: false,
+        mapId: '6ba101fdd85bc7ec'
+      }"
     >
       <gmap-custom-marker :key="index" v-for="(m, index) in markers" :marker="m">
         <!-- 0° = north -->
@@ -41,9 +49,6 @@ export default {
   },
  
   methods: {
-    setPlace(place) {
-      this.currentPlace = place;
-    },
     getFlights() {
       axios.get("http://localhost:9090/flights").then((response) => {
         let i = 0;
