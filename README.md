@@ -20,12 +20,12 @@
   http://localhost:9090
 ```
 
-*USE*
+*USE: JPA / mssql-jdbc / web *
 
 ## AircraftStats
 récupére les données mais est trop longue à cause de la base de données Azure
 
-
+*USE: JPA / mssql-jdbc / *
 
 ## Tech Stack
 
