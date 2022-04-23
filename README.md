@@ -17,7 +17,7 @@
 
 **Language:** JS
 
-**Techs:** VueJS / vue2-google-map / vue2-gmap-marker-custom
+**Techs:** VueJS / vue2-google-maps / vue2-gmap-marker-custom
 
 ## APIAircraft
 ```http
