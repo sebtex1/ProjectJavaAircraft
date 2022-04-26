@@ -11,14 +11,16 @@
 
 <script>
 import axios from "axios"
-import GoogleMap from "../components/GoogleMap";
+import GoogleMap from "../components/GoogleMap"
+import { lookUpRaw } from "geojson-places"
 
 export default {
     data() {
         return {
           time: '',
           times: [],
-          flights: []
+          flights: [],
+          countryFlights: []
         };
   },
 
@@ -55,7 +57,10 @@ export default {
     getFlights(time) {
       axios.get(`http://localhost:9090/history/time/${time}`).then((response) => {
         this.flights = response.data
-        console.log(this.flights)
+        this.flights.forEach((element) => {
+          this.countryFlights.push(lookUpRaw(element.latitude, element.longitude)?.features[0].properties.geonunit)
+        })
+        console.log(this.countryFlights)
       }).catch((error) => {
         console.log(error)
       })

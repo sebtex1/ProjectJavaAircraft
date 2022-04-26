@@ -27,9 +27,6 @@
 import Aircraft from "../assets/Aircraft.png"
 import axios from "axios"
 import GmapCustomMark from "vue2-gmap-custom-marker"
-// import { lookUp } from "geojson-places"
-// // Reverse geocoding to get the region info of Valladolid (Spain)
-// const result = lookUp(41.652349, -4.728602);
 
 export default {
   name: "GoogleMap",
@@ -59,6 +56,7 @@ export default {
     } else {
       this.getFlights()
     }
+    // console.log(result)
   },
 
   watch: {
