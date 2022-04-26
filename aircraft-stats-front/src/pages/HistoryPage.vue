@@ -58,7 +58,11 @@ export default {
       axios.get(`http://localhost:9090/history/time/${time}`).then((response) => {
         this.flights = response.data
         this.flights.forEach((element) => {
-          this.countryFlights.push(lookUpRaw(element.latitude, element.longitude)?.features[0].properties.geonunit)
+          const result = lookUpRaw(element.latitude, element.longitude)
+          if (result !== null) {
+            console.log(result)
+            this.countryFlights.push(result.features[0].properties.geonunit)
+          }
         })
         console.log(this.countryFlights)
       }).catch((error) => {
