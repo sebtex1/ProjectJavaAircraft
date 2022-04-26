@@ -27,19 +27,31 @@ export default {
   },
 
   async mounted() {
-    await axios.get('http://localhost:9090/history/time').then((response) => {
-      response.data.forEach((time) => {
-        this.times.push(time);
-      })
-      console.log(this.times)
-    }).catch((error) => {
-      console.log(error)
-    })
+    await this.getTimes()
     this.time = this.times[0]
     await this.getFlights(this.times[0])
+    this.startInterval()
   },
 
   methods: {
+    startInterval() {
+      this.intervalid1 = setInterval(function(){
+        this.getTimes()
+      }.bind(this), 10000);
+    },
+
+    async getTimes() {
+      await axios.get('http://localhost:9090/history/time').then((response) => {
+        this.times= []
+        response.data.forEach((time) => {
+          this.times.push(time);
+        })
+        console.log(this.times)
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+
     getFlights(time) {
       axios.get(`http://localhost:9090/history/time/${time}`).then((response) => {
         this.flights = response.data
