@@ -82,7 +82,7 @@ public class GetPlanes {
         JSONObject data = new JSONObject(responseBody);
         long time = data.getLong("time");
         JSONArray planes = new JSONArray(data.getJSONArray("states"));
-        for (int i = 0; i < planes.length(); i++) {
+        for (int i = 0; i < 100; i++) {
             JSONArray plane = planes.getJSONArray(i);
             String icao24 = plane.getString(0);
             String callSign = plane.getString(1);

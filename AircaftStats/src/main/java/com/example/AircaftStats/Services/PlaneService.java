@@ -18,6 +18,7 @@ public class PlaneService {
         planeRepository.save(plane);
     }
     public void insertALLPlanes(Iterable<Plane> allPlanes) {
+        // get 1 element -> check -> insert ou pas
         planeRepository.saveAll(allPlanes);
     }
 }
