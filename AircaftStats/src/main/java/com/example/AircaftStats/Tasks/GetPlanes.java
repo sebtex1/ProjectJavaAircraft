@@ -96,7 +96,7 @@ public class GetPlanes {
             planeList.add(planeObject);
             Flight flightObject = new Flight(icao24, longitude, latitude, onGround, trueTrack);
             flightList.add(flightObject);
-            History historyObject = new History(icao24, longitude, latitude, time);
+            History historyObject = new History(icao24, longitude, latitude, time, trueTrack);
             historyList.add(historyObject);
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");

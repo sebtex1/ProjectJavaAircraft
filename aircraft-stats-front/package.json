@@ -12,10 +12,10 @@
     "core-js": "^3.6.5",
     "geojson-places": "^1.0.3",
     "vue": "^2.6.11",
+    "vue-grid-layout": "^2.3.12",
     "vue-router": "^3.2.0",
     "vue2-gmap-custom-marker": "^6.0.1",
-    "vue2-google-maps": "^0.10.7",
-    "vuejs-smart-table": "0.0.8"
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.9",

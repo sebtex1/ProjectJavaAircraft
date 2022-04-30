@@ -15,12 +15,15 @@ public class History {
     private Float longitude;
     private Float latitude;
     private long time;
+    @Column(name = "true_track")
+    private Float trueTrack;
 
-    public History(String icao24, Float longitude, Float latitude, long time) {
+    public History(String icao24, Float longitude, Float latitude, long time, Float trueTrack) {
         this.icao24 = icao24;
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;
+        this.trueTrack = trueTrack;
     }
 
     public History() {}
@@ -63,6 +66,14 @@ public class History {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public Float getTrueTrack() {
+        return trueTrack;
+    }
+
+    public void setTrueTrack(Float trueTrack) {
+        this.trueTrack = trueTrack;
     }
 }
 

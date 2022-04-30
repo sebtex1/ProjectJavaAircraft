@@ -57,7 +57,6 @@ export default {
     } else {
       this.getFlights()
     }
-    // console.log(result)
   },
 
   watch: {
@@ -75,14 +74,9 @@ export default {
       this.intervalid1 = setInterval(function(){
         this.markers = []
         axios.get("http://localhost:9090/flights").then((response) => {
-          // let i = 0;
           response.data.forEach(element => {
-            // if (i < 1000) {
               this.markers.push({ id: element.icao24, lat: element.latitude, lng: element.longitude, rotation: element.trueTrack.toFixed(0) })
-            //   i += 1
-            // }
           });
-          console.log('flights', this.markers)
         }).catch((error) => {
           console.log(error)
         })}
@@ -92,7 +86,7 @@ export default {
     processHistory() {
       this.markers = []
       this.history.forEach(element => {
-        this.markers.push({ id: element.icao24, lat: element.latitude, lng: element.longitude })
+        this.markers.push({ id: element.icao24, lat: element.latitude, lng: element.longitude, rotation: element.trueTrack.toFixed(0) })
       });
     }
   }
@@ -100,8 +94,4 @@ export default {
 </script>
 
 <style scoped>
-.aircraft {
-  width: 100%;
-  /* filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(303deg) brightness(103%) contrast(101%); */
-}
 </style>

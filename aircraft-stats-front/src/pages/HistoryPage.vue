@@ -5,23 +5,45 @@
           <option :key="t" v-for="t in times" :value="t">{{ new Date(parseInt(t.toString() + '000')) }}</option>
         </select>
         <h1>Total aircraft in the sky at {{  new Date(parseInt(time.toString() + '000')) }}: {{ this.flights.length }}</h1>
-        <google-map v-if="flights.length > 0" :use-history="true" :history="flights" style-config="width:50%; height: 74vh;" />
+        <!-- <google-map v-if="flights.length > 0" :use-history="true" :history="flights" style-config="width:50%; height: 74vh;" /> -->
         <!-- <li v-bind:key="index" v-for="(item, index) in countryFlights">
           {{ index }}
           {{ item }}
         </li> -->
-        <v-table :data="countryFlights">
-          <thead slot="head">
-            <th>Country</th>
-            <th>Nb of flights</th>
-          </thead>
-          <tbody slot="body" slot-scope="{displayData}">
-            <tr v-for="(row, index) in displayData" :key="index">
-              <td>{{ index }}</td>
-              <td>{{ row }}</td>
-            </tr>
-        </tbody>
-        </v-table>
+        <grid-layout
+          :layout.sync="layout"
+          :col-num="12"
+          :row-height="30"
+          :is-draggable="false"
+          :is-resizable="false"
+          :is-mirrored="false"
+          :vertical-compact="false"
+          :margin="[0, 0]"
+          :use-css-transforms="true"
+        >
+          <grid-item v-for="item in layout"
+            :x="item.x"
+            :y="item.y"
+            :w="item.w"
+            :h="item.h"
+            :i="item.i"
+            :key="item.i"
+          >
+            <google-map 
+              v-if="flights.length > 0 && item.i === '0'" 
+              :use-history="true" 
+              :history="flights" 
+              style-config="width:100%; height: 74vh;" />
+            <div 
+              v-else 
+              v-bind:key="index" 
+              v-for="(item, index) in countryFlights"
+              style="text-align: left;"
+            >
+              <p style="margin-left: 10px;">{{`${index}: ${item}`}}</p>
+            </div>
+        </grid-item>
+        </grid-layout>
     </div>
 </template>
 
@@ -29,6 +51,7 @@
 import axios from "axios"
 import GoogleMap from "../components/GoogleMap"
 import { lookUpRaw } from "geojson-places"
+import VueGridLayout from 'vue-grid-layout';
 
 export default {
     data() {
@@ -36,12 +59,18 @@ export default {
           time: '',
           times: [],
           flights: [],
-          countryFlights: {}
+          countryFlights: {},
+          layout: [
+            {"x":0,"y":0,"w":9,"h":2,"i":"0"},
+            {"x":9,"y":0,"w":3,"h":4,"i":"1"},
+          ]
         };
   },
 
   components: {
-    GoogleMap
+    GoogleMap,
+    GridLayout: VueGridLayout.GridLayout,
+    GridItem: VueGridLayout.GridItem
   },
 
   async mounted() {
@@ -64,7 +93,6 @@ export default {
         response.data.forEach((time) => {
           this.times.push(time);
         })
-        console.log(this.times)
       }).catch((error) => {
         console.log(error)
       })
