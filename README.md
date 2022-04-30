@@ -29,7 +29,8 @@
 **Techs:** Spring maven / JPA / mssql-jdbc / web
 
 ## AircraftStats
-récupére les données mais est trop longue à cause de la base de données Azure
+Récupére les données mais est trop longue à cause de la base de données Azure
+Réduction au 100er avions pour l'insert
 
 **Language:** JAVA
 
