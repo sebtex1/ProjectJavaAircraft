@@ -3,8 +3,8 @@
     <!-- Personnal custom map by adding mapId -->
     <gmap-map
       :center="center"
-      :zoom="10"
-      style="width:100%;  height: 50rem;"
+      :zoom="3"
+      :style="styleConfig"
       :options="{
         mapTypeControl: false,
         streetViewControl: false,
@@ -38,7 +38,8 @@ export default {
 
   props: {
     useHistory: { type: Boolean, default: false },
-    history: { type: [Array], default: () => [] }
+    history: { type: [Array], default: () => [] },
+    styleConfig: { type: String, default: "width:100%;  height: 50rem;" }
   },
 
   data() {

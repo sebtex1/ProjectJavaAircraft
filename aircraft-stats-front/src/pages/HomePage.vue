@@ -1,6 +1,6 @@
 <template>
     <div>
-        <google-map />
+        <google-map style-config="width:100%; height: 87vh;" />
     </div>
 </template>
 

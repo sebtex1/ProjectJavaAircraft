@@ -31,7 +31,7 @@ public class HistoryController {
     }
 
     @RequestMapping(path = "/history/time/{time}")
-    public String getHistoryById(@PathVariable("time") long time) {
+    public String getHistoryByTime(@PathVariable("time") long time) {
         JSONArray history = new JSONArray(historyService.getAllHistoryByTime(time));
         return history.toString();
     }
