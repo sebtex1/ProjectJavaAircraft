@@ -14,11 +14,7 @@ public class FlightService {
     @Autowired
     public FlightService(FlightRepository flightRepository) { this.flightRepository = flightRepository; }
 
-    public void insertFlight(Flight flight) { flightRepository.save(flight); }
     public void insertAllFlight(Iterable<Flight> allFlights) {
-        // get 1 element -> check -> insert ou pas
-        // flightRepository.deleteAll();
-        // clean every hour
         flightRepository.saveAll(allFlights);
     }
 }

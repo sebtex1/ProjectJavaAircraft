@@ -11,5 +11,7 @@ public interface HistoryRepository extends JpaRepository<History, UUID> {
 
     @Query("SELECT h.time FROM History h GROUP BY h.time ORDER BY time desc")
     List<Long> getTimes();
+    
     List<History> findByTime(long time);
+
 }

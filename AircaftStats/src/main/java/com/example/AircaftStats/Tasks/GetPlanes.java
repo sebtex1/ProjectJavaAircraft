@@ -79,9 +79,11 @@ public class GetPlanes {
         List<Plane> planeList = new ArrayList<>();
         List<Flight> flightList = new ArrayList<>();
         List<History> historyList = new ArrayList<>();
+
         JSONObject data = new JSONObject(responseBody);
         long time = data.getLong("time");
         JSONArray planes = new JSONArray(data.getJSONArray("states"));
+
         for (int i = 0; i < 100; i++) {
             JSONArray plane = planes.getJSONArray(i);
             String icao24 = plane.getString(0);
@@ -99,6 +101,7 @@ public class GetPlanes {
             History historyObject = new History(icao24, longitude, latitude, time, trueTrack);
             historyList.add(historyObject);
         }
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime nowStart = LocalDateTime.now();
         System.out.println("Starting save " + dtf.format(nowStart));

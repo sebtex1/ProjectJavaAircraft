@@ -14,7 +14,6 @@ public class HistoryService {
     @Autowired
     public HistoryService(HistoryRepository historyRepository) { this.historyRepository = historyRepository; }
 
-    public void insertHistory(History history) { historyRepository.save(history); }
     public void insertAllHistory(Iterable<History> allHistory) {
         historyRepository.saveAll(allHistory);
     }

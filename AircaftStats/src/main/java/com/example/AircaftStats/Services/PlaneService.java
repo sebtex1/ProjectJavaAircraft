@@ -14,11 +14,7 @@ public class PlaneService {
     @Autowired
     public PlaneService(PlaneRepository planeRepository) { this.planeRepository = planeRepository; }
 
-    public void insertPlane(Plane plane) {
-        planeRepository.save(plane);
-    }
     public void insertALLPlanes(Iterable<Plane> allPlanes) {
-        // get 1 element -> check -> insert ou pas
         planeRepository.saveAll(allPlanes);
     }
 }
